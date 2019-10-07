@@ -37,10 +37,10 @@ public class NotificationPanel extends Service {
         MediaSessionCompat mediaSession = new MediaSessionCompat(this, MEDIA_SESSION_TAG);
 
 
-        int iconPlayPause = R.drawable.baseline_play_arrow_black_48;
+        int iconPlayPause = R.drawable.ic_stat_play;
         String titlePlayPause = "pause";
         if(isPlaying){
-            iconPlayPause=R.drawable.baseline_pause_black_48;
+            iconPlayPause=R.drawable.ic_stat_pause;
             titlePlayPause="play";
         }
 
@@ -69,14 +69,14 @@ public class NotificationPanel extends Service {
 //        MediaButtonReceiver.handleIntent(mediaSession, selectIntent);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .addAction(R.drawable.baseline_skip_previous_black_48, "prev", pendingPrevIntent)
+                //.addAction(R.drawable.baseline_skip_previous_black_48, "prev", pendingPrevIntent)
                 .addAction(iconPlayPause, titlePlayPause, pendingToggleIntent)
-                .addAction(R.drawable.baseline_skip_next_black_48, "next", pendingNextIntent)
+                //.addAction(R.drawable.baseline_skip_next_black_48, "next", pendingNextIntent)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(0, 1,2)
                         .setShowCancelButton(true)
                         .setMediaSession(mediaSession.getSessionToken()))
-                .setSmallIcon(R.drawable.ic_stat_music_note)
+                .setSmallIcon(R.drawable.ic_launcher_round)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setVibrate(new long[]{0L})
                 .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -84,7 +84,7 @@ public class NotificationPanel extends Service {
                 .setContentText(author)
                 .setSubText(title)
                 .setContentIntent(selectPendingIntent)
-                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_stat_music_note))
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher_round))
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
